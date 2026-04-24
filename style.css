@@ -1,58 +1,366 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f8f9fa;
+}
+
+/* ===== HEADER ===== */
 header {
-  background: #1e3a8a;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #d4633f 100%);
   color: white;
-  padding: 15px;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header nav {
+  display: flex;
+  gap: 30px;
 }
 
 header a {
   color: white;
-  margin: 0 10px;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 25px;
 }
 
+header a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== HERO SECTION ===== */
 .hero {
-  background: linear-gradient(to right, #2563eb, #9333ea);
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #06a77d 75%, #005377 100%);
   color: white;
-  padding: 80px 20px;
+  padding: 120px 20px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+  background-repeat: repeat-x;
+  animation: wave 15s linear infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(1200px); }
+}
+
+.hero h2 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  font-weight: 800;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  animation: slideInDown 0.8s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  font-size: 1.5em;
+  font-weight: 300;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: slideInUp 0.8s ease 0.2s both;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== SECTIONS ===== */
 section {
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
 }
 
+section h2 {
+  font-size: 2.8em;
+  margin-bottom: 40px;
+  color: #ff6b35;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b35, #f7931e, #06a77d);
+  border-radius: 2px;
+}
+
+#about {
+  background: white;
+  color: #333;
+}
+
+#about p {
+  font-size: 1.2em;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #555;
+}
+
+#events {
+  background: #f8f9fa;
+}
+
+/* ===== CARDS ===== */
 .cards {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .card {
-  background: #f3f4f6;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  transition: transform 0.3s;
+  background: white;
+  padding: 35px 25px;
+  border-radius: 15px;
+  width: 280px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid #ff6b35;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
 }
 
+.card:hover::before {
+  left: 100%;
+}
+
+.card h3 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #ff6b35;
+  font-weight: 700;
+}
+
+.card p {
+  color: #666;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+/* Card Icons/Decorations */
+.card {
+  text-align: center;
+}
+
+.card h3::before {
+  display: block;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.card:nth-child(1) h3::before {
+  content: '🎉';
+}
+
+.card:nth-child(2) h3::before {
+  content: '❤️';
+}
+
+.card:nth-child(3) h3::before {
+  content: '⚽';
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+  background: white;
+  padding: 60px 20px;
+}
+
+#contact p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+#contact a {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  border: 2px solid transparent;
+}
+
+#contact a:hover {
+  background: linear-gradient(135deg, #f7931e, #ff6b35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+/* ===== FOOTER ===== */
 footer {
-  background: #111;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
   color: white;
   text-align: center;
-  padding: 15px;
+  padding: 30px 20px;
+  margin-top: 60px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  header nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header a {
+    font-size: 0.95em;
+    padding: 6px 12px;
+  }
+
+  .hero h2 {
+    font-size: 2.5em;
+  }
+
+  .hero p {
+    font-size: 1.1em;
+  }
+
+  section h2 {
+    font-size: 2em;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cards {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.4em;
+  }
+
+  .hero {
+    padding: 60px 15px;
+  }
+
+  .hero h2 {
+    font-size: 1.8em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  section h2 {
+    font-size: 1.6em;
+  }
+
+  .card {
+    width: 100%;
+  }
 }
